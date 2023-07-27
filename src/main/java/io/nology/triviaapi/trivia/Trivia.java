@@ -1,5 +1,9 @@
 package io.nology.triviaapi.trivia;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,30 +17,40 @@ public class Trivia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @JsonProperty("id")
+    private Long id;
 
     @Column
-    String difficulty;
+    @JsonProperty("difficulty")
+    private String difficulty;
 
     @Column
-    Integer numberOfTrivias;
+    @JsonProperty("category")
+    private String category;
 
     @Column
-    String[] questions;
+    @JsonProperty("question")
+    private String question;
 
     @Column
-    String[] choices;
+    @JsonProperty("correct_answer")
+    private String correctAnswer;
 
     @Column
-    String[] correctAnswers;
+    @JsonProperty("incorrect_answers")
+    private List<String> incorrectAnswers;
 
     public Trivia() {
     }
 
-    public Trivia(String difficulty, Integer numOfTrivias) {
+    public Trivia(String difficulty, String category, String question, String correctAnswer,
+            List<String> incorrectAnswers) {
         super();
         this.difficulty = difficulty;
-        this.numberOfTrivias = numOfTrivias;
+        this.category = category;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
     }
 
     public Long getId() {
@@ -55,36 +69,35 @@ public class Trivia {
         this.difficulty = difficulty;
     }
 
-    public Integer getNumberOfTrivias() {
-        return numberOfTrivias;
+    public String getcategory() {
+        return category;
     }
 
-    public void setNumberOfTrivias(Integer numberOfTrivias) {
-        this.numberOfTrivias = numberOfTrivias;
+    public void setcategory(String category) {
+        this.category = category;
     }
 
-    public String[] getQuestions() {
-        return questions;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setQuestions(String[] questions) {
-        this.questions = questions;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public String[] getChoices() {
-        return choices;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setChoices(String[] choices) {
-        this.choices = choices;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
-    public String[] getCorrectAnswers() {
-        return correctAnswers;
+    public List<String> getIncorrectAnswers() {
+        return incorrectAnswers;
     }
 
-    public void setCorrectAnswers(String[] correctAnswers) {
-        this.correctAnswers = correctAnswers;
+    public void setIncorrectAnswers(List<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
     }
-
 }
