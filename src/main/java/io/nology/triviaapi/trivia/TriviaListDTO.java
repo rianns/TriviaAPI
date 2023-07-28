@@ -19,4 +19,5 @@ public class TriviaListDTO {
     public void setResults(List<TriviaDTO> results) {
         this.results = results;
     }
+
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,22 +15,30 @@ public class TriviaService {
 
     private static final String OPEN_TRIVIA_DB_URL = "https://opentdb.com/api.php";
 
-    @Autowired
-    private TriviaRepository triviaRepository;
+    private final TriviaRepository triviaRepository;
+    private final RestTemplate restTemplate;
+
+    public TriviaService(TriviaRepository triviaRepository, RestTemplate restTemplate) {
+        this.triviaRepository = triviaRepository;
+        this.restTemplate = restTemplate;
+    }
 
     public List<Trivia> getTrivia(int amount, String difficulty) {
 
         String apiUrl = String.format("%s?amount=%d&difficulty=%s", OPEN_TRIVIA_DB_URL, amount, difficulty);
 
-        RestTemplate restTemplate = new RestTemplate();
         TriviaListDTO triviaListDTO = restTemplate.getForObject(apiUrl, TriviaListDTO.class);
 
         if (triviaListDTO != null && triviaListDTO.getResults() != null) {
             List<Trivia> triviaList = new ArrayList<>();
 
             for (TriviaDTO triviaDTO : triviaListDTO.getResults()) {
+                System.out.println("Trivia: " + triviaDTO);
+
                 Trivia trivia = new Trivia();
                 trivia.setQuestion(triviaDTO.getQuestion());
+                trivia.setCategory(triviaDTO.getCategory());
+                trivia.setDifficulty(triviaDTO.getDifficulty());
                 trivia.setCorrectAnswer(triviaDTO.getCorrectAnswer());
                 trivia.setIncorrectAnswers(triviaDTO.getIncorrectAnswers());
 
