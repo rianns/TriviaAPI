@@ -13,6 +13,13 @@ CREATE TABLE trivias (
     incorrect_answers JSON NOT NULL
 );
 
+CREATE TABLE incorrect_answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    answer VARCHAR(255) NOT NULL,
+    trivia_id INT,
+    FOREIGN KEY (trivia_id) REFERENCES trivias(id)
+)
+
 -- Down section: Rollback the migration
 
 DROP TABLE trivias;

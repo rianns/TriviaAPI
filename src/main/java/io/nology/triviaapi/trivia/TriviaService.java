@@ -40,7 +40,10 @@ public class TriviaService {
                 trivia.setCategory(triviaDTO.getCategory());
                 trivia.setDifficulty(triviaDTO.getDifficulty());
                 trivia.setCorrectAnswer(triviaDTO.getCorrectAnswer());
-                trivia.setIncorrectAnswers(triviaDTO.getIncorrectAnswers());
+
+                // set incorrect answers
+                List<IncorrectAnswer> incorrectAnswers = triviaDTO.getIncorrectAnswers();
+                trivia.setIncorrectAnswers(incorrectAnswers);
 
                 triviaList.add(trivia);
             }
