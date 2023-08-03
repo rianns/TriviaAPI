@@ -2,13 +2,11 @@ package io.nology.triviaapi.trivia;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,14 +29,14 @@ public class Trivia {
     @Column
     private String correct_answer;
 
-    @OneToMany(mappedBy = "trivia", cascade = CascadeType.ALL)
-    private List<IncorrectAnswer> incorrect_answers;
+    @Column
+    private List<String> incorrect_answers;
 
     public Trivia() {
     }
 
     public Trivia(String difficulty, String category, String question, String correct_answer,
-            List<IncorrectAnswer> incorrect_answers) {
+            List<String> incorrect_answers) {
         super();
         this.difficulty = difficulty;
         this.category = category;
@@ -87,11 +85,11 @@ public class Trivia {
         this.correct_answer = correct_answer;
     }
 
-    public List<IncorrectAnswer> getIncorrectAnswers() {
+    public List<String> getIncorrectAnswers() {
         return incorrect_answers;
     }
 
-    public void setIncorrectAnswers(List<IncorrectAnswer> incorrect_answers) {
+    public void setIncorrectAnswers(List<String> incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
     }
 }

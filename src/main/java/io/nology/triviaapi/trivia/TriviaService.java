@@ -3,6 +3,7 @@ package io.nology.triviaapi.trivia;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +24,13 @@ public class TriviaService {
         this.restTemplate = restTemplate;
     }
 
-    public List<Trivia> getTrivia(int amount, String difficulty) {
+    // get all trivias
+    public List<Trivia> getTrivia() {
+        return triviaRepository.findAll();
+    }
+
+    // add new trivia game data to db
+    public List<Trivia> postTrivia(int amount, String difficulty) {
 
         String apiUrl = String.format("%s?amount=%d&difficulty=%s", OPEN_TRIVIA_DB_URL, amount, difficulty);
 
@@ -41,9 +48,8 @@ public class TriviaService {
                 trivia.setDifficulty(triviaDTO.getDifficulty());
                 trivia.setCorrectAnswer(triviaDTO.getCorrectAnswer());
 
-                // set incorrect answers
-                List<IncorrectAnswer> incorrectAnswers = triviaDTO.getIncorrectAnswers();
-                trivia.setIncorrectAnswers(incorrectAnswers);
+                // set incorrect answers, one-to-many?
+                trivia.setIncorrectAnswers(triviaDTO.getIncorrectAnswers());
 
                 triviaList.add(trivia);
             }
@@ -53,16 +59,17 @@ public class TriviaService {
         return Collections.emptyList();
     }
 
-    // add new trivia game data to db
-    public Trivia saveTrivia(Trivia trivia) {
-        return triviaRepository.save(trivia);
+    // get trivia game by id
+    public Trivia getTriviaById(Long id) {
+        Optional<Trivia> optTrivia = triviaRepository.findById(id);
+        return optTrivia.orElse(null);
     }
 
-    // get all trivias
-
-    // get trivia game by id
+    // delete trivia game
+    public void deleteTrivia() {
+        triviaRepository.deleteAll();
+    }
 
     // update trivia game
 
-    // delete trivia game
 }

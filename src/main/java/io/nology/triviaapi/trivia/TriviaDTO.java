@@ -12,13 +12,13 @@ public class TriviaDTO {
     @JsonProperty("correct_answer")
     private String correct_answer;
     @JsonProperty("incorrect_answers")
-    private List<IncorrectAnswer> incorrect_answers;
+    private List<String> incorrect_answers;
 
     public TriviaDTO() {
     }
 
     public TriviaDTO(String difficulty, String category, String question, String correct_answer,
-            List<IncorrectAnswer> incorrect_answers) {
+            List<String> incorrect_answers) {
         this.difficulty = difficulty;
         this.category = category;
         this.question = question;
@@ -58,11 +58,11 @@ public class TriviaDTO {
         this.correct_answer = correct_answer;
     }
 
-    public List<IncorrectAnswer> getIncorrectAnswers() {
+    public List<String> getIncorrectAnswers() {
         return incorrect_answers;
     }
 
-    public void setIncorrectAnswers(List<IncorrectAnswer> incorrect_answers) {
+    public void setIncorrectAnswers(List<String> incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
     }
 

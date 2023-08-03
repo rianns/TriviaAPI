@@ -77,7 +77,6 @@
 			<artifactId>flyway-mysql</artifactId>
 			<version>9.21.0</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
