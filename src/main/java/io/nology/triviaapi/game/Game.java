@@ -5,9 +5,6 @@ public class Game {
 
     // TriviaDTO trivia;
 
-    // CorrectDTO correctAnswers;
-
-    // incorrect answers
-    String[] answers;
+    // answers
 
 }
