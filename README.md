@@ -36,7 +36,6 @@ An Spring Boot Java API for the Trivia application to save scores, games history
 
   - Java
   - Spring Boot
-  - Flyway (DB version migration)
 
 ## Build steps
 
@@ -47,7 +46,6 @@ An Spring Boot Java API for the Trivia application to save scores, games history
    - Validation
    - MySQL Driver
    - Spring Data JPA
-   - Flyway Migration
 3. Add entity classes in src/main/java (Game entity, Trivia entity)
 4. Create repositories extended from JpaRepository and services linked to their controllers
 5. Create controllers for each entity with CRUD methods and other specific methods
