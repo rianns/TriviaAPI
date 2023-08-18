@@ -85,10 +85,10 @@ An Spring Boot Java API for the Trivia application to save scores, games history
 
 ## Change logs
 
-18/07/2023 - Initial commit
-27/07/2023 - Added game and trivia entities and respective controllers
-28/07/2023 - Added migration
-18/08/2023 - Added Game entity functionality
+- 18/07/2023 - Initial commit
+- 27/07/2023 - Added game and trivia entities and respective controllers
+- 28/07/2023 - Added migration
+- 18/08/2023 - Added Game entity functionality
 
 ## Licensing details
 
