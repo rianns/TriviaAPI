@@ -63,6 +63,11 @@ An Spring Boot Java API for the Trivia application to save scores, games history
 - OOP approach
 - version design for database migration
 
+## Setup
+
+- Each Game entity -> Trivia entity (OneToOne relationship)
+- Trivia entity <- has a foreign key of game_id
+
 ## Features
 
 - User can choose level of difficulty
@@ -72,6 +77,7 @@ An Spring Boot Java API for the Trivia application to save scores, games history
 ## Known Issues
 
 - incorrect_answers is saved as VARBINARY(255) in database
+- PUT, DELETE, GET by id not working
 
 ## Future goals
 
@@ -82,6 +88,7 @@ An Spring Boot Java API for the Trivia application to save scores, games history
 18/07/2023 - Initial commit
 27/07/2023 - Added game and trivia entities and respective controllers
 28/07/2023 - Added migration
+18/08/2023 - Added Game entity functionality
 
 ## Licensing details
 

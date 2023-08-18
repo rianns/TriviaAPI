@@ -2,11 +2,15 @@ package io.nology.triviaapi.trivia;
 
 import java.util.List;
 
+import io.nology.triviaapi.game.Game;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,22 +31,28 @@ public class Trivia {
     private String question;
 
     @Column
-    private String correct_answer;
+    private String correctAnswer;
 
-    @Column
-    private List<String> incorrect_answers;
+    @Column(length = 1000)
+    private List<String> incorrectAnswers;
+
+    // many to one relationship with game
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private Game game;
 
     public Trivia() {
     }
 
-    public Trivia(String difficulty, String category, String question, String correct_answer,
-            List<String> incorrect_answers) {
+    public Trivia(String difficulty, String category, String question, String correctAnswer,
+            List<String> incorrectAnswers, Game game) {
         super();
         this.difficulty = difficulty;
         this.category = category;
         this.question = question;
-        this.correct_answer = correct_answer;
-        this.incorrect_answers = incorrect_answers;
+        this.correctAnswer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
+        this.game = game;
     }
 
     public Long getId() {
@@ -78,18 +88,26 @@ public class Trivia {
     }
 
     public String getCorrectAnswer() {
-        return correct_answer;
+        return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correct_answer) {
-        this.correct_answer = correct_answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public List<String> getIncorrectAnswers() {
-        return incorrect_answers;
+        return incorrectAnswers;
     }
 
-    public void setIncorrectAnswers(List<String> incorrect_answers) {
-        this.incorrect_answers = incorrect_answers;
+    public void setIncorrectAnswers(List<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

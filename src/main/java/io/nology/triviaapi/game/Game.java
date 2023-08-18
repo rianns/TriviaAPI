@@ -3,32 +3,39 @@ package io.nology.triviaapi.game;
 import java.util.Date;
 import java.util.List;
 
-import io.nology.triviaapi.trivia.TriviaDTO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-// all about the game
+// import io.nology.triviaapi.trivia.TriviaDTO;
+
+@Entity
+@Table(name = "games")
 public class Game {
-    Long id;
 
-    // this calls the trivia API to get trivia
-    // TriviaDTO trivia;
-    private TriviaDTO trivia;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     // user submitted answers
     // change from front-end to get an object with key-value pair (question id,
     // answer)
-    private List<String> userAnswers;
 
-    // user score
-    private int score;
+    // can probably make this another entity with user answers and if its failed
+    @Column
+    List<String> userAnswers;
 
-    // date played
-    private Date date;
+    @Column
+    int score;
 
-    // correct answers
-    private List<String> correctAnswers;
+    @Column
+    Date date;
 
-    // if a question was failed or not
-    private boolean failed;
+    @Column(length = 1000)
+    List<String> correctAnswers;
 
     // TODO: #3 game history
 
@@ -37,21 +44,21 @@ public class Game {
     public Game() {
     }
 
-    public Game(int score, Date date, List<String> correctAnswers, boolean failed) {
+    public Game(List<String> userAnswers, int score, Date date, List<String> correctAnswers) {
         super();
+        this.userAnswers = userAnswers;
         this.score = score;
         this.date = date;
         this.correctAnswers = correctAnswers;
-        this.failed = failed;
     }
 
-    public TriviaDTO getTrivia() {
-        return trivia;
-    }
+    // public TriviaDTO getTrivia() {
+    // return trivia;
+    // }
 
-    public void setTrivia(TriviaDTO trivia) {
-        this.trivia = trivia;
-    }
+    // public void setTrivia(TriviaDTO trivia) {
+    // this.trivia = trivia;
+    // }
 
     public List<String> getUserAnswers() {
         return userAnswers;
@@ -83,13 +90,5 @@ public class Game {
 
     public void setCorrectAnswers(List<String> correctAnswers) {
         this.correctAnswers = correctAnswers;
-    }
-
-    public boolean isFailed() {
-        return failed;
-    }
-
-    public void setFailed(boolean failed) {
-        this.failed = failed;
     }
 }

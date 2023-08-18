@@ -10,20 +10,20 @@ public class TriviaDTO {
     private String category;
     private String question;
     @JsonProperty("correct_answer")
-    private String correct_answer;
+    private String correctAnswer;
     @JsonProperty("incorrect_answers")
-    private List<String> incorrect_answers;
+    private List<String> incorrectAnswers;
 
     public TriviaDTO() {
     }
 
-    public TriviaDTO(String difficulty, String category, String question, String correct_answer,
-            List<String> incorrect_answers) {
+    public TriviaDTO(String difficulty, String category, String question, String correctAnswer,
+            List<String> incorrectAnswers) {
         this.difficulty = difficulty;
         this.category = category;
         this.question = question;
-        this.correct_answer = correct_answer;
-        this.incorrect_answers = incorrect_answers;
+        this.correctAnswer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
     }
 
     public String getDifficulty() {
@@ -51,19 +51,19 @@ public class TriviaDTO {
     }
 
     public String getCorrectAnswer() {
-        return correct_answer;
+        return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correct_answer) {
-        this.correct_answer = correct_answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public List<String> getIncorrectAnswers() {
-        return incorrect_answers;
+        return incorrectAnswers;
     }
 
-    public void setIncorrectAnswers(List<String> incorrect_answers) {
-        this.incorrect_answers = incorrect_answers;
+    public void setIncorrectAnswers(List<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
     }
 
     @Override
@@ -72,8 +72,8 @@ public class TriviaDTO {
                 "category='" + category + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", question='" + question + '\'' +
-                ", correct_answer='" + correct_answer + '\'' +
-                ", incorrect_answers=" + incorrect_answers +
+                ", correct_answer='" + correctAnswer + '\'' +
+                ", incorrect_answers=" + incorrectAnswers +
                 '}';
     }
 }
